@@ -6,7 +6,7 @@ import FoodPng from "../../assets/imgs/food.png";
 import Banana from "../../assets/imgs/banana2.png";
 import { motion } from "framer-motion";
 
-const slideUp = (delay) => {
+export const slideUp = (delay) => {
   return {
     hidden: {
       y: "100%",
