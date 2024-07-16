@@ -4,6 +4,7 @@ import Hero from "./components/Hero/Hero";
 import HotDessert from "./components/HotDessert/HotDessert";
 import Banner from "./components/Banner/Banner";
 import PopularRecipe from "./components/popularRecipe/PopularRecipe";
+import TestiMonial from "./components/TestiMonial/TestiMonial";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <HotDessert />
       <Banner />
       <PopularRecipe />
+      <TestiMonial/>
     </div>
   );
 }
