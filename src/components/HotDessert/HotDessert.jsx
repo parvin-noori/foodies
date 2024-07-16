@@ -31,42 +31,44 @@ const HotDessertData = [
 
 export default function HotDessert() {
   return (
-    <div className="container py-12">
-      {/* heading secion  */}
-      <motion.h3
-        variants={slideUp(0)}
-        initial="hidden"
-        whileInView="show"
-        className="font-semibold text-darkGreen uppercase py-8 text-2xl"
-      >
-        hot dessert
-      </motion.h3>
-
-      {/* grid section  */}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {HotDessertData.map((item) => (
-          <motion.div
-          variants={slideUp(item.delay)}
+    <section>
+      <div className="container py-12">
+        {/* heading secion  */}
+        <motion.h3
+          variants={slideUp(0)}
           initial="hidden"
           whileInView="show"
-            key={item.id}
-            className="flex items-center gap-3 bg-white/50 shadow-md p-3 group"
-          >
-            <img
-              src={item.img}
-              alt={item.title}
-              className="w-24 img-shadow roundned-full group-hover:scale-125 transition-all duration-700 group-hover:rotate-[50deg]"
-            />
-            <div>
-              <h3 className="font-semibold text-xl">{item.title}</h3>
-              <p className="font-semibold text-xl text-yellow-500">
-                {item.price}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+          className="font-semibold text-darkGreen uppercase py-8 text-2xl"
+        >
+          hot dessert
+        </motion.h3>
+
+        {/* grid section  */}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {HotDessertData.map((item) => (
+            <motion.div
+              variants={slideUp(item.delay)}
+              initial="hidden"
+              whileInView="show"
+              key={item.id}
+              className="flex items-center gap-3 bg-white/50 shadow-md p-3 group"
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                className="w-24 img-shadow roundned-full group-hover:scale-125 transition-all duration-700 group-hover:rotate-[50deg]"
+              />
+              <div>
+                <h3 className="font-semibold text-xl">{item.title}</h3>
+                <p className="font-semibold text-xl text-yellow-500">
+                  {item.price}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
