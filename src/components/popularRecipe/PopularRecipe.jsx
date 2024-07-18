@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { slideUp } from "../Hero/Hero";
 import { motion } from "framer-motion";
 import Food1 from "../../assets/imgs/food.png";
 import Food2 from "../../assets/imgs/food2-plate.png";
 import Food3 from "../../assets/imgs/banner.png";
+import { useDispatch } from "react-redux";
+import { addToCart, decreaseCart, removeFromCart } from "../../stores/cart";
 
 const PopularRecipeData = [
   {
@@ -30,6 +32,28 @@ const PopularRecipeData = [
 ];
 
 export default function PopularRecipe() {
+  // const [quantity, setQuantity] = useState(1);
+
+  // const handleMinusQuantity = () => {
+  //   setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
+  // };
+
+  // const handlePlusQuantity = () => {
+  //   setQuantity(quantity + 1);
+  // };
+
+  const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
+
+  const handleRemoveItem = (product) => {
+    dispatch(removeFromCart(product));
+  };
+
+  const handleDecreaseItem = (product) => {
+    dispatch(decreaseCart(product));
+  };
   return (
     <section>
       <div className="container py-24">
@@ -55,9 +79,32 @@ export default function PopularRecipe() {
                 className="img-shadow w-44 transition-all duration-700 group-hover:scale-x-110 group-hover:-translate-y-[50px] group-hover:translate-x-[10px] group-hover:rotate-[50deg]"
               />
               <div className="">
-                <button className="btn-primary opacity-0 group-hover:opacity-100 group-hover:mb-3">
+                <button
+                  className="btn-primary opacity-100 group-hover:opacity-100 group-hover:mb-3"
+                  onClick={() => handleAddToCart(item)}
+                >
                   buy now
                 </button>
+                {/* <div className="flex items-center gap-2 justify-around mb-3">
+                  <button
+                    className="bg-darkGreen text-white w-8 h-8 rounded-full"
+                    onClick={handleMinusQuantity}
+                  >
+                    -
+                  </button>
+                  <input
+                    defaultValue={quantity}
+                    value={quantity}
+                    className="focus:outline-none w-8 bg-transparent text-center"
+                  />
+                  <span>{quantity}</span>
+                  <button
+                    className="bg-darkGreen text-white w-8 h-8 rounded-full"
+                    onClick={handlePlusQuantity}
+                  >
+                    +
+                  </button>
+                </div> */}
                 <p className="text-xl font-semibold">{item.title}</p>
                 <p className="text-xl font-bold text-yellow-500">
                   {item.price}
