@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import Food1 from "../../assets/imgs/food.png";
 import Food2 from "../../assets/imgs/food2-plate.png";
 import Food3 from "../../assets/imgs/banner.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decreaseCart, removeFromCart } from "../../stores/cart";
+import { IoTrashOutline } from "react-icons/io5";
 
 const PopularRecipeData = [
   {
@@ -32,7 +33,8 @@ const PopularRecipeData = [
 ];
 
 export default function PopularRecipe() {
-  // const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState(0);
+  const [isInCart, setIsInCart] = useState(false);
 
   // const handleMinusQuantity = () => {
   //   setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
@@ -43,8 +45,13 @@ export default function PopularRecipe() {
   // };
 
   const dispatch = useDispatch();
+
+  const cartItems = useSelector((state) => state.cartItems);
+
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
+    // const cartItem = cartItems.find((item) => item.id === product.id);
+    // setQuantity(cartItem?.cartQuantity);
   };
 
   const handleRemoveItem = (product) => {
@@ -68,50 +75,65 @@ export default function PopularRecipe() {
         </motion.h3>
         {/* grid section  */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
-          {PopularRecipeData.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white/50 shadow-xl rounded-xl p-3 text-center space-y-3 group"
-            >
-              <img
-                src={item.img}
-                alt={item.title}
-                className="img-shadow w-44 transition-all duration-700 group-hover:scale-x-110 group-hover:-translate-y-[50px] group-hover:translate-x-[10px] group-hover:rotate-[50deg]"
-              />
-              <div className="">
-                <button
-                  className="btn-primary opacity-100 group-hover:opacity-100 group-hover:mb-3"
-                  onClick={() => handleAddToCart(item)}
-                >
-                  buy now
-                </button>
-                {/* <div className="flex items-center gap-2 justify-around mb-3">
-                  <button
-                    className="bg-darkGreen text-white w-8 h-8 rounded-full"
-                    onClick={handleMinusQuantity}
-                  >
-                    -
-                  </button>
-                  <input
-                    defaultValue={quantity}
-                    value={quantity}
-                    className="focus:outline-none w-8 bg-transparent text-center"
-                  />
-                  <span>{quantity}</span>
-                  <button
-                    className="bg-darkGreen text-white w-8 h-8 rounded-full"
-                    onClick={handlePlusQuantity}
-                  >
-                    +
-                  </button>
-                </div> */}
-                <p className="text-xl font-semibold">{item.title}</p>
-                <p className="text-xl font-bold text-yellow-500">
-                  {item.price}
-                </p>
+          {PopularRecipeData.map((item) => {
+            const cartItem = cartItems.find(
+              (product) => product.id === item.id
+            );
+            const quantity = cartItem?.cartQuantity;
+            return (
+              <div
+                key={item.id}
+                className="bg-white/50 shadow-xl rounded-xl p-3 text-center space-y-3 group"
+              >
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="img-shadow w-44 transition-all duration-700 group-hover:scale-x-110 group-hover:-translate-y-[50px] group-hover:translate-x-[10px] group-hover:rotate-[50deg]"
+                />
+                <div className="">
+                  {quantity > 0 ? (
+                    <div className="flex items-center gap-2 justify-around mb-3">
+                      {quantity > 1 ? (
+                        <button
+                          className="bg-darkGreen text-white w-8 h-8 rounded-full"
+                          onClick={() => handleDecreaseItem(item)}
+                        >
+                          -
+                        </button>
+                      ) : (
+                        <button
+                          className="bg-darkGreen text-white w-8 h-8 rounded-full flex items-center justify-center"
+                          onClick={()=>handleRemoveItem(item)}
+                        >
+                          <IoTrashOutline />
+                        </button>
+                      )}
+
+                      <span>{quantity}</span>
+                      <button
+                        className="bg-darkGreen text-white w-8 h-8 rounded-full"
+                        onClick={() => handleAddToCart(item)}
+                      >
+                        +
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      className="btn-primary opacity-100 group-hover:opacity-100 group-hover:mb-3"
+                      onClick={() => handleAddToCart(item)}
+                    >
+                      buy now
+                    </button>
+                  )}
+
+                  <p className="text-xl font-semibold">{item.title}</p>
+                  <p className="text-xl font-bold text-yellow-500">
+                    {item.price}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
