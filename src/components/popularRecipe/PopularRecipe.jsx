@@ -33,16 +33,6 @@ const PopularRecipeData = [
 ];
 
 export default function PopularRecipe() {
-  // const [quantity, setQuantity] = useState(0);
-  const [isInCart, setIsInCart] = useState(false);
-
-  // const handleMinusQuantity = () => {
-  //   setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
-  // };
-
-  // const handlePlusQuantity = () => {
-  //   setQuantity(quantity + 1);
-  // };
 
   const dispatch = useDispatch();
 
@@ -50,8 +40,6 @@ export default function PopularRecipe() {
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    // const cartItem = cartItems.find((item) => item.id === product.id);
-    // setQuantity(cartItem?.cartQuantity);
   };
 
   const handleRemoveItem = (product) => {
@@ -103,7 +91,7 @@ export default function PopularRecipe() {
                       ) : (
                         <button
                           className="bg-darkGreen text-white w-8 h-8 rounded-full flex items-center justify-center"
-                          onClick={()=>handleRemoveItem(item)}
+                          onClick={() => handleRemoveItem(item)}
                         >
                           <IoTrashOutline />
                         </button>
