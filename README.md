@@ -1,8 +1,10 @@
-# React + Vite
+### Home Page Sample for Framer Motion Practice
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project serves as a sample home page designed for practicing and mastering the use of Framer Motion. The key technologies utilized in this project include React, Vite, and Framer Motion. This application demonstrates the integration of these technologies to create dynamic and engaging user interfaces.
 
-Currently, two official plugins are available:
+[View Demo](https://foodies-fastfood.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Note:** If you are in Iran, you may need to use a VPN to access the demo link.
+
+![demo](https://github.com/parvin-noori/foodies/blob/main/src/assets/imgs/screenshot/smartmockups_foodies.jpg)
+
